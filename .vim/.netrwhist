@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/treefingers'
+let g:netrw_dirhist_2='/usr/local/man'
+let g:netrw_dirhist_3='/usr/local/man/man5'
+let g:netrw_dirhist_4='/home/treefingers/dotfiles'

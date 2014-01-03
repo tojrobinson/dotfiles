@@ -37,7 +37,10 @@ fi
 # aliases
 [ ! -d ~/.trash ] && mkdir ~/.trash
 alias rm="mv -t ~/.trash"
-alias trash="sudo rm -r ~/.trash/*"
+trash() {
+   read -p "Completely remove all files from .trash [y/n]? " CONFIRM 
+   [ "$CONFIRM" = "y" ] && find ~/.trash -mindepth 1 -delete
+}
 
 alias ..="cd .."
 alias ..2="cd ../.."

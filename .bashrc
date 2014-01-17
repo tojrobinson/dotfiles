@@ -46,9 +46,17 @@ alias ..5="cd ../../../../.."
 [ ! -d ~/.trash ] && mkdir ~/.trash
 alias rm="mv --backup=numbered -t ~/.trash"
 trash() {
-   TRASH_SIZE=$(du -hs ~/.trash | egrep -o '^\s*[^\t \s]+')
-   read -p "Completely remove all files from .trash (${TRASH_SIZE}) [y/n]? " CONFIRM 
-   [ "$CONFIRM" = "y" ] && find ~/.trash -mindepth 1 -maxdepth 1 -exec rm -rf '{}' \;
+   if [ $# -gt 0 ]
+   then
+     read -p "Completely remove: ${@} [y/n]?" CONFIRM
+     [ "$CONFIRM" = "y" ] && cd ~/.trash
+     \rm -rf $@
+     cd - > /dev/null
+   else
+      TRASH_SIZE=$(du -hs ~/.trash | cut -f1)
+      read -p "Completely remove all files from .trash (${TRASH_SIZE}) [y/n]? " CONFIRM 
+      [ "$CONFIRM" = "y" ] && find ~/.trash -mindepth 1 -maxdepth 1 -exec rm -rf '{}' \;
+   fi
 }
 
 # db

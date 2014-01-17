@@ -35,19 +35,21 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # aliases
-[ ! -d ~/.trash ] && mkdir ~/.trash
-alias rm="mv --backup=numbered -t ~/.trash"
-trash() {
-   TRASH_SIZE=$(du -hs ~/.trash | egrep -o '^\s*\w+')
-   read -p "Completely remove all files from .trash (${TRASH_SIZE}) [y/n]? " CONFIRM 
-   [ "$CONFIRM" = "y" ] && sudo find ~/.trash -mindepth 1 -maxdepth 1 -exec rm -rf '{}' \;
-}
+alias sudo="sudo "
 
 alias ..="cd .."
 alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
+
+[ ! -d ~/.trash ] && mkdir ~/.trash
+alias rm="mv --backup=numbered -t ~/.trash"
+trash() {
+   TRASH_SIZE=$(du -hs ~/.trash | egrep -o '^\s*[^\t \s]+')
+   read -p "Completely remove all files from .trash (${TRASH_SIZE}) [y/n]? " CONFIRM 
+   [ "$CONFIRM" = "y" ] && find ~/.trash -mindepth 1 -maxdepth 1 -exec rm -rf '{}' \;
+}
 
 # db
 PATH=/usr/local/pgsql/bin:$PATH

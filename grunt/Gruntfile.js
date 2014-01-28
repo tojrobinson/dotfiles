@@ -1,41 +1,62 @@
 module.exports = function(grunt) {
+
    grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
       clean: {
          files: ['']
       },
-      concat: {
-         options: {
-         },
-         dist: {
-            src: [''],
-            dest: 'concatenatedFiles.js'
-         }
-      },
       uglify: {
          options: {
-            banner: ''
+            mangle: true,
+            compress: true
          },
          main: {
             files: {
-               'main.min.js': ['fileOne.js', 'fileTwo.js']
+               '': ['']
             }
          },
+         player: {
+            files: {
+               '': ['']
+            }
+         },
+         lib: {
+            files: {
+               '': ['']
+            }
+         }
       },
       cssmin: {
          options: {
-         
+            noAdvanced: true
          },
          main: {
             files: {
-               'main.min.css': ['fileOne.css', 'fileTwo.css']
+               '': ['']
             }
          }
       },
       jshint: {
-         all: ['config/**/*.js', 'app/**/*.js', 'public/js/*.js'],
+         all: [''],
          options: {
             jshintrc: '.jshintrc'
+         }
+      },
+      concurrent: {
+         dev: {
+            tasks: ['nodemon', 'watch'],
+            options: {
+               logConcurrentOutput: true
+            }
+         }
+      },
+      watch: {
+         dist: {
+            files: [''],
+            tasks: ['clean', 'uglify', 'cssmin'],
+            options: {
+               livreload: true
+            }
          }
       },
       nodemon: {
@@ -43,18 +64,18 @@ module.exports = function(grunt) {
             script: 'server.js',
             options: {
                nodeArgs: ['--debug'],
+               ext: 'dust,js,css',
                delayTime: 1000,
                callback: function(nodemon) {
 
-                  // launch in firefox 
                   nodemon.on('config:update', function() {
-                     setTimeout(function() {
-                        require('child_process').exec('firefox http://localhost:8055');
-                     }, 1000);
+                 /*    setTimeout(function() {
+                        require('child_process').exec('firefox http://localhost:3000');
+                     }, 1000);*/
                   });
 
                   nodemon.on('restart', function() {
-                  // rebuild
+
                   });
                }
             },
@@ -63,14 +84,14 @@ module.exports = function(grunt) {
    });
 
    grunt.loadNpmTasks('grunt-contrib-jshint');
-   grunt.loadNpmTasks('grunt-contrib-concat');
    grunt.loadNpmTasks('grunt-contrib-uglify');
    grunt.loadNpmTasks('grunt-contrib-clean');
    grunt.loadNpmTasks('grunt-contrib-cssmin');
+   grunt.loadNpmTasks('grunt-contrib-watch');
+   grunt.loadNpmTasks('grunt-concurrent');
    grunt.loadNpmTasks('grunt-nodemon');
-   grunt.loadNpmTasks('grunt-reload');
 
    grunt.registerTask('check', ['jshint']);
    grunt.registerTask('init', ['clean', 'uglify', 'cssmin']);
-   grunt.registerTask('default', ['clean', 'uglify', 'cssmin', 'nodemon']);
+   grunt.registerTask('default', ['clean', 'uglify', 'cssmin', 'concurrent']);
 }

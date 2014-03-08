@@ -5,6 +5,7 @@ filetype plugin on
 filetype indent on
 syntax on
 au BufReadPost *.dust,*.taco,*.ejs set syntax=html
+au BufReadPost *.md set syntax=markdown
 
 set background=dark
 set title

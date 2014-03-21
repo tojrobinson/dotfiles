@@ -48,7 +48,7 @@ alias rm="mv --backup=numbered -t ~/.trash"
 trash() {
    if [ $# -gt 0 ]
    then
-      read -p "Completely remove: ${@} [y/n]?" CONFIRM
+      read -p "Completely remove: ${@} [y/N]?" CONFIRM
       if [ "$CONFIRM" = "y" ]
       then
          cd ~/.trash
@@ -58,7 +58,7 @@ trash() {
    else
       NUM_FILES=$(ls -A ~/.trash | wc -l)
       TRASH_SIZE=$(du -hs ~/.trash | cut -f1)
-      read -p "Completely remove ${NUM_FILES} files (${TRASH_SIZE}) from .trash [y/n]? " CONFIRM 
+      read -p "Completely remove ${NUM_FILES} files (${TRASH_SIZE}) from .trash [y/N]? " CONFIRM 
       [ "$CONFIRM" = "y" ] && find ~/.trash -mindepth 1 -maxdepth 1  -print0 | xargs -0 sudo rm -rf \;
    fi
 }

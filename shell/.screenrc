@@ -1,0 +1,5 @@
+startup_message off
+altscreen on
+
+screen -t irssi  0 irssi
+screen -t bash   1 bash

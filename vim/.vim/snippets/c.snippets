@@ -1,4 +1,17 @@
 # main()
+snippet boiler
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <string.h>
+
+	int main(int argc, char** argv) {
+	   int i;
+	   ${1:}
+	}
+snippet f
+	for (i = 0; i < ${1:}; ++i) {
+		${2:}
+	}
 snippet main
 	int main(int argc, const char *argv[])
 	{

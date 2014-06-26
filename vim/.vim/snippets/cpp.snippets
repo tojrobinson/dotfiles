@@ -1,4 +1,19 @@
 # Read File Into Vector
+snippet boiler
+	#include <iostream>
+	#include <fstream>
+	#include <algorithm>
+	#include <string>
+	
+	using namespace std;
+
+	int main(int argc, char** argv) {
+	    ${1}
+	}
+snippet f 
+	for (int i = 0; i < ${1:count}; ++i) {
+		${2:}
+	}
 snippet readfile
 	std::vector<char> v;
 	if (FILE *${2:fp} = fopen(${1:"filename"}, "r")) {

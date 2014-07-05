@@ -9,6 +9,9 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# auto correct cd typos
+shopt -s cdspell
+
 # refresh $COLUMNS and $LINES
 shopt -s checkwinsize 
 
@@ -44,7 +47,7 @@ alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 
 [ ! -d ~/.trash ] && mkdir ~/.trash
-alias rm="mv --backup=numbered -t ~/.trash"
+alias rm="sudo mv --backup=numbered -t ~/.trash"
 trash() {
    if [ $# -gt 0 ]
    then
@@ -67,14 +70,14 @@ alias vom="vim"
 alias vmi="vim"
 alias vi="vim"
 
-# db
+# libs
 PATH=/usr/local/pgsql/bin:$PATH
-PATH=/usr/lib/mongo/mongodb-linux-x86_64-2.4.8/bin:$PATH
+PATH=/usr/lib/mongo/mongodb-linux-x86_64-2.6.0/bin:$PATH
 
-# amazon
-PATH=$PATH:/usr/lib/amazon/AWS-ElasticBeanstalk-CLI-2.5.1/eb/linux/python2.7
-PATH=$PATH:~/Downloads/play/play-2.2.1
+export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/vim
 
-export VISUAL='/usr/bin/vim'
-export EDITOR='/usr/bin/vim'
+export JAVA_HOME=/usr/lib/java/jdk1.7.0_51
+PATH=$JAVA_HOME/bin:$PATH
+
 export PATH=$PATH

@@ -1,18 +1,33 @@
 # Read File Into Vector
-snippet boiler
+snippet boiler.cpp
 	#include <iostream>
+	#include <stdio.h>
+	#include <string.h>
+	#include <string>
+	#include <sstream>
 	#include <fstream>
 	#include <algorithm>
-	#include <string>
+	#include <cmath>
+	#include <vector>
+	#include <map>
+	#include <queue>
 	
 	using namespace std;
 
 	int main(int argc, char** argv) {
-	    ${1}
+	   ${1}
 	}
-snippet f 
-	for (int i = 0; i < ${1:count}; ++i) {
-		${2:}
+snippet fi
+	for (int i = 0; i < ${1:}; ++i) {
+	   ${2:}
+	}
+snippet fj
+	for (int j = 0; j < ${1:}; ++j) {
+	   ${2:}
+	}
+snippet fk
+	for (int k = 0; k < ${1:}; ++k) {
+	   ${2:}
 	}
 snippet readfile
 	std::vector<char> v;

@@ -52,9 +52,9 @@ map <silent> <F2> :Flisttoggle<CR>
 "basic
 colorscheme slate
 set number
-set shiftwidth=3
+set shiftwidth=2
 set expandtab
-set tabstop=3
+set tabstop=2
 set wrap
 
 "newlines from escaped mode

@@ -12,6 +12,7 @@ set title
 set number
 set t_Co=256
 set nowrap
+set ruler
 
 set autoindent
 set smartindent
@@ -27,6 +28,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set smartcase
+set re=2
 
 set pastetoggle=<F2>
 

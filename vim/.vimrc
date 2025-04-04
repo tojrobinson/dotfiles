@@ -1,4 +1,3 @@
-set formatoptions-=cro
 set nocompatible
 
 filetype plugin on
@@ -31,11 +30,11 @@ set smartcase
 set re=2
 
 set pastetoggle=<F2>
+set paste
 
 set mouse=a
 set mousehide
 
-"backup
 set backup
 if has("unix")
    if !isdirectory(expand("~/.vim/backups/."))
@@ -51,23 +50,23 @@ set backupdir=~/.vim/backups
 
 map <silent> <F2> :Flisttoggle<CR>
 
-"basic
 colorscheme slate
-set number
 set shiftwidth=2
 set expandtab
 set tabstop=2
 set wrap
 
-"newlines from escaped mode
+set noerrorbells
+set visualbell
+set t_vb=
+
 map <S-Enter> O<Esc>j
 map <CR> o<Esc>k
 
-set formatoptions-=cro
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd BufEnter * if &ruler == 0 | set ruler | endif
 
 map <right> :tabnext<CR>
 map <left> :tabprevious<CR>
 inoremap <right> <ESC>:tabnext<CR>a
 inoremap <left> <ESC>:tabprevious<CR>a
-"map <c-t> :wq<CR>
